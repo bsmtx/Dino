@@ -1,4 +1,5 @@
 import pygame
+import random
 from pygame import Rect
 
 
@@ -29,6 +30,7 @@ class Dino:
 
 class Cactus:
     def __init__(self, game):
+        self.sprite_id = random.randrange(1, 4)
         self.game = game
         self.cactus_timer = 0
         self.rect = Rect(self.game.get_width(), self.game.get_height() - 100, 50, 50)
@@ -40,6 +42,9 @@ class Cactus:
             self.game.restart()
     def get_pos(self):
         return self.rect.topleft
+    def get_sprite_id(self):
+        return self.sprite_id
+        
             
     
 

@@ -12,22 +12,37 @@ class UI:
         self.dino_sprite = pygame.image.load('dino.png')
         self.dino_sprite.set_colorkey((255,255,255))
         self.cactus_sprite = pygame.image.load('cactus.png')
+        self.cactus_sprite_2 = pygame.image.load("cactus_2.png")
+        self.cactus_sprite_3 = pygame.image.load("cactus_3.png")
         self.cactus_sprite.set_colorkey((255,255,255))
+        self.cactus_sprite_2.set_colorkey((255,255,255))
+        self.cactus_sprite_3.set_colorkey((255,255,255))
         self.dino_sprite = pygame.transform.scale(self.dino_sprite, (50, 50))
         self.cactus_sprite= pygame.transform.scale(self.cactus_sprite, (50, 50))
 
     def draw(self):
-        name_to_sprite = {"dino": self.dino_sprite, "cactus": self.cactus_sprite}
-        print(self.game.dino.get_pos())
+        self.screen.fill((255, 255, 255))
+        name_to_sprite = {"dino": self.dino_sprite, "cactus": self.cactus_sprite, "cactus_2": self.cactus_sprite_2, "cactus_3": self.cactus_sprite_3 }
         self.screen.blit(self.dino_sprite, self.game.get_dino().get_pos())
         for cactus in self.game.get_cactus():
-            self.screen.blit(name_to_sprite['cactus'], cactus.get_pos())
+            a = cactus.get_sprite_id()
+            if a == 1:
+                self.screen.blit(name_to_sprite['cactus'], cactus.get_pos())
+            elif a == 2:
+                self.screen.blit(name_to_sprite['cactus_2'], cactus.get_pos())
+            elif a == 3:
+                self.screen.blit(name_to_sprite['cactus_3'], cactus.get_pos())
+    
+
                 
     def input(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                    self.game.jump()
             # if event.type == pygame.MOUSEBUTTONUP:
         
             #     x, y = pygame.mouse.get_pos()
@@ -41,6 +56,8 @@ class UI:
             self.draw()
             self.game.update()
             pygame.display.update()
+            self.clock.tick(60)
+
 ui = UI()
 ui.run()
 
