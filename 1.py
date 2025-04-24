@@ -21,7 +21,7 @@ gray = (200, 200, 200)
 dino_img = pygame.image.load("dino.png")
 dino_img = pygame.transform.scale(dino_img, (50, 50))
 
-cactus_img = pygame.image.load("cactus.png")
+cactus_img = pygame.image.load("cactus_1.png")
 cactus_img = pygame.transform.scale(cactus_img, (50, 50))
 
 clock = pygame.time.Clock()
